@@ -1,0 +1,32 @@
+import com.bill.multiplatformmoviebrowser.movies.domain.Genre;
+import com.bill.multiplatformmoviebrowser.movies.domain.Status;
+-- import kotlin.collections.List;
+
+CREATE TABLE movieEntity (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    imdb_id INTEGER,
+    adult INTEGER AS Boolean DEFAULT 0 NOT NULL,
+    -- todo: Import kotlin list
+    genre TEXT AS Genre,
+    title TEXT NOT NULL,
+    overview TEXT,
+    runtime INTEGER,
+    poster_path TEXT,
+    status TEXT AS Status,
+    backdrop_path TEXT
+);
+
+getAllMovies:
+SELECT *
+FROM movieEntity;
+
+getMovieById:
+SELECT *
+FROM movieEntity
+WHERE id=?;
+
+insertMovie:
+INSERT OR REPLACE
+INTO movieEntity(id, imdb_id, adult, genre, title, overview, runtime, poster_path, backdrop_path)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
+
